@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin</title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="js/doctorOper.js"></script>
+
+    <style>
+        td {
+            width: 200px;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        table, th, td {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+    </style>
+
+
+</head>
+<body onload = "connect()" onunload = "disconnect()">
+
+    <a th:href="@{/logout}">Logout</a>
+
+    <hr/>
+
+    <h1>Consultations:</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Patient PNC</th>
+            <th>Diagnosis</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <hr/>
+
+    <form>
+        <select name="consultation" id="consultationId">
+            <option th:each="consultation : ${doctorConsultations}" th:value="${consultation.id}" th:text="${consultation.id}"></option>
+        </select>
+        Diagnosis: <input type = "text" id = "diagnosis"/>
+        <button id="updateConsultation">Update Consultation</button>
+    </form>
+
+    <hr/>
+
+    <form>
+        Notifications: <output type = "text" id = "notification"/>
+    </form>
+
+    <hr/>
+
+    <form>
+        <output id="error"></output>
+    </form>
+
+    <hr/>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin</title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="js/adminOper.js"></script>
+
+    <style>
+        td {
+            width: 200px;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        table, th, td {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <a th:href="@{/logout}">Logout</a>
+
+    <hr/>
+
+    <h1>Users:</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <hr/>
+
+    <form>
+        Username: <input type = "text" id = "createUsername"/>
+        Password: <input type = "text" id = "createPassword"/>
+        <select name="role" id="createRole">
+            <option th:each="role : ${role}" th:value="${role}" th:text="${role}"></option>
+        </select>
+        <button id="createUser">Create User</button>
+    </form>
+
+    <hr/>
+
+    <form>
+        <select name="updateUsername" id="updateUsername">
+            <option th:each="user : ${user}" th:value="${user.username}" th:text="${user.username}"></option>
+        </select>
+        Password: <input type = "text" id = "updatePassword"/>
+        <button id = "updateUser">Update User</button>
+    </form>
+
+    <hr/>
+
+    <form>
+        <select name="deleteUsername" id="deleteUsername">
+            <option th:each="deleteUsername : ${user}" th:value="${deleteUsername.username}" th:text="${deleteUsername.username}"></option>
+        </select>
+        <button id = "deleteUser">Delete User</button>
+    </form>
+
+    <hr/>
+
+    <form>
+        <output id="error"></output>
+    </form>
+
+    <hr/>
+
+</body>
+</html>
